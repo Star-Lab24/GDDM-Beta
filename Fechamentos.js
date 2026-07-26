@@ -1583,3 +1583,360 @@ function renderizarProdutosNoFechamento() {
     adicionarEventosProdutosFechamento();
 
 }
+function adicionarEventosProdutosFechamento() {
+
+    const campos =
+        document.querySelectorAll(
+
+            "#listaProdutosFechamento input"
+
+        );
+
+
+    campos.forEach(
+
+        campo => {
+
+            campo.addEventListener(
+
+                "input",
+
+                calcularProdutosFechamento
+
+            );
+
+        }
+
+    );
+
+}
+function calcularProdutosFechamento() {
+
+    const itens =
+        document.querySelectorAll(
+
+            ".produto-fechamento-item"
+
+        );
+
+
+    let totalReceita = 0;
+
+    let totalCusto = 0;
+
+
+    itens.forEach(
+
+        item => {
+
+            const produtoId =
+                Number(
+
+                    item.dataset.produtoId
+
+                );
+
+
+            const produto =
+                produtos.find(
+
+                    item =>
+
+                        item.id ===
+                        produtoId
+
+                );
+
+
+            if (!produto) return;
+
+
+            const estoqueInicial =
+                Number(
+
+                    item.querySelector(
+                        ".estoque-inicial"
+                    ).value
+
+                ) || 0;
+
+
+            const estoqueFinal =
+                Number(
+
+                    item.querySelector(
+                        ".estoque-final"
+                    ).value
+
+                ) || 0;
+
+
+            const valorVenda =
+                Number(
+
+                    item.querySelector(
+                        ".valor-venda"
+                    ).value
+
+                ) || 0;
+
+
+            const quantidadeVendida =
+
+                Math.max(
+
+                    0,
+
+                    estoqueInicial -
+                    estoqueFinal
+
+                );
+
+
+            const receita =
+
+                quantidadeVendida *
+                valorVenda;
+
+
+            const custo =
+
+                quantidadeVendida *
+                Number(
+                    produto.custo
+                );
+
+
+            totalReceita +=
+                receita;
+
+
+            totalCusto +=
+                custo;
+
+
+            item.querySelector(
+
+                ".quantidade-vendida"
+
+            ).textContent =
+
+                quantidadeVendida;
+
+
+            item.querySelector(
+
+                ".receita-produto"
+
+            ).textContent =
+
+                formatarMoedaFechamento(
+                    receita
+                );
+
+
+            item.querySelector(
+
+                ".custo-produto"
+
+            ).textContent =
+
+                formatarMoedaFechamento(
+                    custo
+                );
+
+        }
+
+    );
+
+
+    const lucroBruto =
+
+        totalReceita -
+        totalCusto;
+
+
+    document
+
+        .getElementById(
+            "receitaProdutosFechamento"
+        )
+
+        .textContent =
+
+        formatarMoedaFechamento(
+            totalReceita
+        );
+
+
+    document
+
+        .getElementById(
+            "custoProdutosFechamento"
+        )
+
+        .textContent =
+
+        formatarMoedaFechamento(
+            totalCusto
+        );
+
+
+    document
+
+        .getElementById(
+            "lucroProdutosFechamento"
+        )
+
+        .textContent =
+
+        formatarMoedaFechamento(
+            lucroBruto
+        );
+
+}
+function obterProdutosDoFechamento() {
+
+    const itens =
+        document.querySelectorAll(
+
+            ".produto-fechamento-item"
+
+        );
+
+
+    const produtosFechamento = [];
+
+
+    itens.forEach(
+
+        item => {
+
+            const produtoId =
+                Number(
+
+                    item.dataset.produtoId
+
+                );
+
+
+            const produto =
+                produtos.find(
+
+                    item =>
+
+                        item.id ===
+                        produtoId
+
+                );
+
+
+            if (!produto) return;
+
+
+            const estoqueInicial =
+                Number(
+
+                    item.querySelector(
+                        ".estoque-inicial"
+                    ).value
+
+                ) || 0;
+
+
+            const estoqueFinal =
+                Number(
+
+                    item.querySelector(
+                        ".estoque-final"
+                    ).value
+
+                ) || 0;
+
+
+            const valorVenda =
+                Number(
+
+                    item.querySelector(
+                        ".valor-venda"
+                    ).value
+
+                ) || 0;
+
+
+            const quantidadeVendida =
+
+                Math.max(
+
+                    0,
+
+                    estoqueInicial -
+                    estoqueFinal
+
+                );
+
+
+            const receita =
+
+                quantidadeVendida *
+                valorVenda;
+
+
+            const custo =
+
+                quantidadeVendida *
+                Number(
+                    produto.custo
+                );
+
+
+            /*
+                Não salva produtos
+                que não tiveram movimentação
+            */
+
+            if (
+
+                estoqueInicial === 0 &&
+
+                estoqueFinal === 0
+
+            ) {
+
+                return;
+
+            }
+
+
+            produtosFechamento.push({
+
+                produtoId,
+
+                nome:
+                    produto.nome,
+
+                estoqueInicial,
+
+                estoqueFinal,
+
+                quantidadeVendida,
+
+                valorVenda,
+
+                valorCusto:
+                    produto.custo,
+
+                receita,
+
+                custo
+
+            });
+
+        }
+
+    );
+
+
+    return produtosFechamento;
+
+}
