@@ -369,34 +369,46 @@ function salvarFechamento(
 
         const novoFechamento = {
 
-            id:
-                gerarIdFechamento(),
+    id:
+        gerarIdFechamento(),
 
-            data,
+    data,
 
-            local,
+    local,
 
-            funcionario,
+    funcionario,
 
-            dinheiro,
 
-            maquininha,
+    produtos:
+        produtosDoFechamento,
 
-            pix,
 
-            taxas,
+    totalReceita,
 
-            impostos,
+    totalCusto,
 
-            despesasExtras,
+    lucroBruto,
 
-            observacoes,
 
-            totalBruto,
+    dinheiro,
 
-            totalLiquido
+    maquininha,
 
-        };
+    pix,
+
+    taxas,
+
+    impostos,
+
+    despesasExtras,
+
+    observacoes,
+
+    totalBruto,
+
+    totalLiquido
+
+};
 
 
         fechamentos.push(
