@@ -1352,3 +1352,234 @@ function escaparHTMLFechamento(
     return div.innerHTML;
 
 }
+
+function renderizarProdutosNoFechamento() {
+
+    const container =
+        document.getElementById(
+            "listaProdutosFechamento"
+        );
+
+
+    if (!container) return;
+
+
+    const produtosSalvos =
+        localStorage.getItem(
+            "produtos"
+        );
+
+
+    const produtosCadastrados =
+        produtosSalvos
+
+            ? JSON.parse(
+                produtosSalvos
+            )
+
+            : [];
+
+
+    container.innerHTML = "";
+
+
+    if (
+        produtosCadastrados.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty-message">
+
+                Nenhum produto cadastrado.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    produtosCadastrados.forEach(
+
+        produto => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "produto-fechamento-item";
+
+
+            item.dataset.produtoId =
+                produto.id;
+
+
+            item.innerHTML = `
+
+                <div
+                    class="produto-fechamento-info"
+                >
+
+                    <strong>
+
+                        ${escaparHTMLFechamento(
+                            produto.nome
+                        )}
+
+                    </strong>
+
+
+                    <span>
+
+                        Custo:
+                        ${formatarMoedaFechamento(
+                            produto.custo
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="produto-fechamento-campos"
+                >
+
+                    <div>
+
+                        <label>
+                            Estoque inicial
+                        </label>
+
+                        <input
+
+                            type="number"
+
+                            min="0"
+
+                            value="0"
+
+                            class="estoque-inicial"
+
+                            data-produto-id="${produto.id}"
+
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Estoque final
+                        </label>
+
+                        <input
+
+                            type="number"
+
+                            min="0"
+
+                            value="0"
+
+                            class="estoque-final"
+
+                            data-produto-id="${produto.id}"
+
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Valor de venda
+                        </label>
+
+                        <input
+
+                            type="number"
+
+                            min="0"
+
+                            step="0.01"
+
+                            value="${produto.venda}"
+
+                            class="valor-venda"
+
+                            data-produto-id="${produto.id}"
+
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="produto-fechamento-resultado"
+                >
+
+                    <span>
+
+                        Vendidos:
+
+                        <strong
+                            class="quantidade-vendida"
+                        >
+                            0
+                        </strong>
+
+                    </span>
+
+
+                    <span>
+
+                        Receita:
+
+                        <strong
+                            class="receita-produto"
+                        >
+                            R$ 0,00
+                        </strong>
+
+                    </span>
+
+
+                    <span>
+
+                        Custo:
+
+                        <strong
+                            class="custo-produto"
+                        >
+                            R$ 0,00
+                        </strong>
+
+                    </span>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                item
+            );
+
+        }
+
+    );
+
+
+    adicionarEventosProdutosFechamento();
+
+}
