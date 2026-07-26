@@ -1082,7 +1082,8 @@ function abrirModalFechamento() {
 
     if (!modal) return;
 
-
+renderizarProdutosNoFechamento();
+   
     modal.classList.add(
         "active"
     );
