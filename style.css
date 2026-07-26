@@ -2081,3 +2081,330 @@ form {
     }
 
 }
+/* =====================================================
+   PRODUTOS NO FECHAMENTO
+===================================================== */
+
+.fechamento-produtos {
+
+    margin-bottom: 25px;
+
+    padding: 20px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            var(--surface-soft),
+
+            var(--surface)
+
+        );
+
+}
+
+
+.section-title {
+
+    margin-bottom: 18px;
+
+}
+
+
+.section-title h3 {
+
+    color: var(--verde-escuro);
+
+    font-size: 17px;
+
+}
+
+
+body.dark-theme .section-title h3 {
+
+    color: var(--milho);
+
+}
+
+
+.section-title p {
+
+    margin-top: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+}
+
+
+.produtos-fechamento {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+.produto-fechamento-item {
+
+    padding: 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--surface);
+
+}
+
+
+.produto-fechamento-info {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.produto-fechamento-info strong {
+
+    color: var(--text-primary);
+
+    font-size: 14px;
+
+}
+
+
+.produto-fechamento-info span {
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+}
+
+
+.produto-fechamento-campos {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            3,
+
+            minmax(
+
+                0,
+
+                1fr
+
+            )
+
+        );
+
+    gap: 10px;
+
+}
+
+
+.produto-fechamento-campos div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.produto-fechamento-campos label {
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+.produto-fechamento-campos input {
+
+    width: 100%;
+
+    padding: 9px 10px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: var(--surface-soft);
+
+    color: var(--text-primary);
+
+    font-size: 13px;
+
+}
+
+
+.produto-fechamento-campos input:focus {
+
+    border-color: var(--milho);
+
+    box-shadow:
+
+        0 0 0 3px rgba(
+
+            244,
+
+            180,
+
+            0,
+
+            0.12
+
+        );
+
+}
+
+
+.produto-fechamento-resultado {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 16px;
+
+    margin-top: 14px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+.produto-fechamento-resultado span {
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+
+}
+
+
+.produto-fechamento-resultado strong {
+
+    color: var(--verde);
+
+}
+
+
+.resumo-produtos-fechamento {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            3,
+
+            minmax(
+
+                0,
+
+                1fr
+
+            )
+
+        );
+
+    gap: 10px;
+
+    margin-top: 16px;
+
+}
+
+
+.resumo-produtos-fechamento div {
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    background: var(--milho-claro);
+
+}
+
+
+.resumo-produtos-fechamento span {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+
+}
+
+
+.resumo-produtos-fechamento strong {
+
+    color: var(--verde-escuro);
+
+    font-size: 15px;
+
+}
+
+
+@media (max-width: 600px) {
+
+    .produto-fechamento-campos {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .produto-fechamento-info {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .resumo-produtos-fechamento {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
