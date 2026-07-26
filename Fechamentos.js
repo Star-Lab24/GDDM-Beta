@@ -67,6 +67,40 @@ function carregarFechamentos() {
 ===================================================== */
 
 function salvarFechamentos() {
+   const produtosDoFechamento =
+    obterProdutosDoFechamento();
+
+
+const totalReceita =
+    produtosDoFechamento.reduce(
+
+        (total, produto) =>
+
+            total +
+            produto.receita,
+
+        0
+
+    );
+
+
+const totalCusto =
+    produtosDoFechamento.reduce(
+
+        (total, produto) =>
+
+            total +
+            produto.custo,
+
+        0
+
+    );
+
+
+const lucroBruto =
+
+    totalReceita -
+    totalCusto;
 
     localStorage.setItem(
 
